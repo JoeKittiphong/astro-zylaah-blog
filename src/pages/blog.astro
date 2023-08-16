@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import CardBlog from "../components/CardBlog.astro";
 const allBlogs = await Astro.glob("../pages/posts/*.md")
 ---
 
@@ -7,8 +8,16 @@ const allBlogs = await Astro.glob("../pages/posts/*.md")
 	<ul>
         {allBlogs.map((blog) =>{
             return(
-                <li><a href={blog.url}>{blog.frontmatter.title}</a></li>
+                <CardBlog href={blog.url} title={blog.frontmatter.head} body={blog.frontmatter.title} />
+                // <li><a href={blog.url}>{blog.frontmatter.title}</a></li>
             )
         })}
     </ul>
 </MainLayout>
+<style>
+ul{
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+}
+</style>
